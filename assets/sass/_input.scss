@@ -1,0 +1,333 @@
+// Input Fields
+.field__input {
+  margin-bottom: 1.25rem;
+
+  &.field__input--group {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+
+    &.columns {
+      margin: {
+        top: 0;
+        right: 0;
+        bottom: pxtorem(20);
+        left: 0;
+      };
+    }
+
+    .field__input--group:first-of-type {
+      margin-right: pxtorem(10);
+    }
+  }
+
+  input {
+    background-color: transparent;
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+}
+
+.field__input--group {
+  position: relative;
+  @include flexbox(flex);
+  //align-items: center;
+  font-size: .9em;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 0;
+  padding: pxtorem(5);
+  transition: all .3s;
+  background: $white;
+
+  a {
+    align-items: center;
+    @include flexbox(flex);
+  }
+}
+
+.field__checkbox--group {
+  @include flexbox(flex);
+  @include flex-direction(row);
+}
+
+.input__field, select {
+  padding: pxtorem(16) pxtorem(14) pxtorem(3) !important;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+  line-height: 18px;
+  @include font-size(13, 13, 13);
+  width: 100%;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(0, 0, 0, .5);
+    background-color: transparent;
+
+    + label {
+      color: #0f93cc;
+    }
+  }
+
+  &::placeholder {
+    opacity: 0;
+    transition: all .3s;
+    color: #909090;
+  }
+
+  &:placeholder-shown:not(:focus)::placeholder {
+    opacity: 0;
+  }
+
+  &:placeholder-shown:not(:focus) {
+    + * {
+      top: pxtorem(11);
+      @include font-size(13, 13, 13);
+      pointer-events: none;
+    }
+
+    &::placeholder {
+      opacity: 0;
+      transition: all .3s;
+    }
+  }
+}
+
+.field__select--input {
+  width: 100%;
+
+  &::before {
+    color: #454545;
+    font-size: 20px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+    content: "\eb27";
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font: normal normal normal 1em/1 'LineIconsPro Regular';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+select {
+  appearance: none;
+}
+
+.input__field--label {
+  position: absolute;
+  left: pxtorem(2);
+  //top: pxtorem(1);
+  right: 0;
+  transform: translateY(18.5%);
+  cursor: text;
+  font-weight: 700;
+  @include font-size(11, 11, 11);
+  text-transform: none;
+  color: #999;
+  transition: all .2s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 !important;
+  padding-left: pxtorem(16);
+
+  span {
+    color: red;
+  }
+}
+
+// Password Input Container
+.field__password--msg {
+  @include flexbox(flex);
+  @include flex-direction(row);
+  flex-wrap: wrap;
+
+  .password__msg--content {
+    @include flexbox(flex);
+    @include flex-direction(row);
+    align-items: baseline;
+    flex: 1 0 100%;
+
+    .btn {
+      padding: {
+        top: 0.3125rem;
+        bottom: 0.3125rem;
+      }
+
+      margin: {
+        top: 0;
+        left: 2.6rem;
+      }
+    }
+
+    .password__msg--open {
+      border-bottom: 0.0625rem solid $orange;
+      margin-top: 0.25em;
+    }
+
+    .icon__bg {
+      background-color: $gray;
+      padding: 0.3125em 0.4375em;
+      border-radius: 50%;
+      @include font-size(14, 14, 14);
+      color: $white;
+    }
+  }
+
+  .field__password--msg-txt {
+    margin-top: 1rem;
+    display: none;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    background-color: $blue-lightest;
+    padding: 0.625rem 1.25rem;
+    color: $white;
+    flex: 1 1 40%;
+
+    strong {
+      color: $white;
+    }
+  }
+}
+
+// Checkbox & Radio
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  font-size: .8125rem;
+  margin-bottom: 5px;
+
+  input {
+   // position: absolute;
+    //opacity: 0;
+    cursor: pointer;
+    //float: left;
+    margin: 0 10px 10px 0;
+
+    &:checked ~ .checkmark::after {
+      display: block;
+    }
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+
+  .checkmark {
+    font-size: 13px;
+    color: #999;
+    stroke: #5cb200;
+    stroke-dashoffset: 745.74853515625;
+    stroke-dasharray: 745.74853515625;
+    animation: c 3.8s ease-out forwards;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fafafa;
+    border: 1px solid #d3d3d3;
+    border-radius: 0;
+
+    &::after {
+      left: 6px;
+      top: 2px;
+      width: 7px;
+      height: 12px;
+      border: solid #5cb200;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+      content: "";
+      position: absolute;
+      display: none;
+    }
+  }
+}
+
+.add_technical_details__field {
+  cursor: pointer;
+  @include flexbox(flex);
+  @include flex-direction(row);
+  justify-content: center;
+}
+
+.editor__btn {
+  @include flexbox(flex);
+  @include flex-direction(row);
+  margin-bottom: pxtorem(10);
+  justify-content: flex-end;
+
+  .btn {
+    padding: pxtorem(10);
+
+    &:first-child {
+      margin-right: pxtorem(5);
+    }
+
+    &:last-child {
+      margin-left: pxtorem(5);
+    }
+  }
+}
+
+.fake__textarea {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9em;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 0;
+  transition: all 0.3s;
+  background: white;
+  position: relative;
+  padding: pxtorem(16) 0 0.875rem pxtorem(16);
+
+  span {
+    position: absolute;
+    left: 0.125rem;
+    right: 0;
+    transform: translateY(18.5%);
+    cursor: text;
+    font-weight: 700;
+    @include font-size(13, 13, 13);
+    text-transform: none;
+    color: #999;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: $white;
+    z-index: 1;
+    top: 0;
+    margin: 0;
+    padding-left: 0.875rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .fake__textarea--preview {
+    max-height: 340px;
+    overflow-y: scroll;
+    min-height: 20px;
+    position: relative;
+    line-height: 1.6;
+
+    h1:first-child, p:first-child {
+      margin-top: 0;
+    }
+  }
+}

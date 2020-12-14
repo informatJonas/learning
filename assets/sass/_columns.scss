@@ -1,0 +1,89 @@
+@mixin gridColumn($columns) {
+  @for $i from 1 to $columns {
+    .col-#{$i}0 {
+      flex: 1 1 10% * $i;
+      padding: pxtorem(16);
+    }
+  }
+
+  .col-auto {
+    flex: 1 1 auto;
+    padding-right: pxtorem(16);
+    padding-left: pxtorem(16);
+    margin-bottom: pxtorem(16);
+  }
+
+  @media screen and (max-width: pxtorem(768)) {
+    .col-50 {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.row {
+  box-sizing: border-box;
+  @include flexbox();
+  @include flex-direction(row);
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  margin-right: -1rem;
+  margin-left: -1rem;
+  @include gridColumn(12);
+
+  .col__parent {
+    padding-top: 0;
+  }
+
+  .col {
+    @include flexbox(flex);
+  }
+}
+
+.columns {
+  @include flexbox(flex);
+  @include flex-direction(row);
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  @include gridColumn(12);
+
+  .columns {
+    margin-top: 0;
+  }
+
+  .col {
+    padding: 0.75rem 0.75rem 0 0.75rem;
+    @include flexbox(flex);
+    @include flex-direction(column);
+  }
+}
+
+.columns, .row {
+  &.col__parent {
+    padding-top: 0;
+  }
+
+  .col__item {
+    &:nth-child(n+2) {
+      margin-top: 1.25rem;
+    }
+
+    .col__item--header {
+      font-weight: 900;
+
+      &:after {
+        content: '';
+        @include flexbox(flex);
+        width: 100%;
+        height: 0.25rem;
+        background-color: $gray-lightest;
+        margin: {
+          top: 0.625rem;
+          bottom: 1.25rem;
+        }
+      }
+    }
+
+    .col__item--content {
+    }
+  }
+}

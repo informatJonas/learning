@@ -1,0 +1,44 @@
+@function pxtorem($px) {
+  @return $px / $font-size-main + rem;
+}
+
+// Flexbox
+@mixin flexbox($flexbox: flex) {
+  display: $flexbox;
+}
+
+// Flexbox Direction
+@mixin flex-direction($value: row) {
+  flex-direction: $value;
+}
+
+// Font size
+@mixin font-size($size, $max-size: '', $min-size: '') {
+  // Font Size in PX
+  font-size: $size * 1px;
+  // Font Size in REM
+  font-size: $size * 0.1rem;
+
+  // Font Size in vw size
+  font-size: calc(#{$size}em + 0.50vw / 2);
+
+  // Font Size in View Unit and responsive
+  font-size: calc(#{$size}px + (#{$max-size} - #{$min-size}) * (100vw - 320px) / (1600 - 320));
+}
+
+// Font Weight
+@mixin font-weight($weight) {
+  $weights: (
+          light: 300,
+          normal: 400,
+          bold: 700,
+          black: 900,
+  );
+
+  $output: $weight;
+  @if map-has-key($weights, $weight) {
+    $output: map-get($weights, $weight);
+  }
+
+  font-weight: $output;
+}
